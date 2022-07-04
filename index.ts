@@ -77,3 +77,69 @@ import { AsyncSubject, BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 
 // subject.next(5);
 // subject.complete();
+
+// Advances
+
+// Subject Completion
+// when BehaviorSubject completed, Observers subscribe after that, only receive complete signal.
+
+// const subject = new BehaviorSubject(0); // 0 is the initial value
+// subject.subscribe({
+//   next: (v) => console.log('observerA: ' + v),
+//   complete: () => console.log('observerA: done')
+// });
+// subject.next(1);
+// subject.next(2);
+// subject.subscribe({
+//   next: (v) => console.log('observerB: ' + v),
+//   complete: () => console.log('observerB: done')
+// });
+// subject.next(3);
+
+// subject.complete();
+
+// subject.subscribe({
+//   next: (v) => console.log('observerC: ' + v),
+//   complete: () => console.log('observerC: done')
+// });
+
+// when ReplaySubject completed, Observers subscribe after that will be emited all the values was stored in buffer, then it's exclusive the completion of Observer.
+
+// const subject = new ReplaySubject(3);
+
+// subject.subscribe({
+//   next: (v) => console.log('observerA: ' + v),
+//   complete: () => console.log('observerA: done')
+// });
+
+// let i = 1;
+// const id = setInterval(() => subject.next(i++), 200);
+
+// setTimeout(() => {
+//   subject.complete();
+//   clearInterval(id);
+//   subject.subscribe({
+//     next: (v) => console.log('observerB: ' + v),
+//     complete: () => console.log('observerB: done')
+//   });
+// }, 1000);
+
+// when AsyncSubject completed, Observer can subscribe and receive the last value.
+// const subject = new AsyncSubject();
+
+// subject.subscribe({
+//   next: (v) => console.log('observerA: ' + v),
+//   complete: () => console.log('observerA: done')
+// });
+
+// subject.next(1);
+// subject.next(2);
+// subject.next(3);
+// subject.next(4);
+// subject.next(5);
+// subject.complete();
+// subject.subscribe({
+//   next: (v) => console.log('observerB: ' + v),
+//   complete: () => console.log('observerB: done')
+// });
+
